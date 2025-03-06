@@ -13,3 +13,7 @@ else:
     with open(file_path,"wb") as file:
         file.write(response.content)
     print(f'Download complete file saved at path {file_path}')
+
+data_set = pd.read_csv(file_path)
+print(data_set.shape[0])
+print(data_set.columns.tolist())
