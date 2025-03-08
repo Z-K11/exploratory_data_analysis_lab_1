@@ -51,3 +51,7 @@ stats_df = stats_df.loc[new_fields]
 stats_df.rename({'50%':'median'},inplace=True)
 # renaming the 50% label as median
 print(stats_df)
+print(f'Printing the mean exclusively \n {data_set.groupby('species').mean()}')
+# grouping the data set by species and printing their mean 
+print(f'printing the median exclusively \n {data_set.groupby('species').median()}')
+print(f'Printing both the mean and median at the same time \n {data_set.groupby('species').agg(['mean','median'])}')
