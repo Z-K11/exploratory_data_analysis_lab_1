@@ -89,3 +89,19 @@ if os.path.exists(histogram_destination):
     print(f'Histogram exists at {histogram_destination}')
 else: 
     plt.savefig(histogram_destination)
+import seaborn as sns
+sns.set_context('notebook')
+plt.figure()
+ax =plt.axes()
+features=data_set[[x for x in data_set.columns if x !='species']]
+feature = [x for x in data_set.columns if x !='species']
+colors = ['blue','red','purple','green']
+ax.hist(features,bins=10,alpha=0.5,color=colors,label=feature)
+ax.set(xlabel='Size in cm ',ylabel='Frequency',title='Data Features Histogram')
+ax.legend()
+histogram='all_features.png'
+histogram_destination = os.path.join(plots_directory,histogram)
+if os.path.exists(histogram_destination):
+    print(f'Histogram already exists at {histogram_destination}')
+else:
+    plt.savefig(histogram_destination)
