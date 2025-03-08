@@ -90,13 +90,12 @@ if os.path.exists(histogram_destination):
 else: 
     plt.savefig(histogram_destination)
 import seaborn as sns
-sns.set_context('notebook')
 plt.figure()
 ax =plt.axes()
 features=data_set[[x for x in data_set.columns if x !='species']]
 feature = [x for x in data_set.columns if x !='species']
 colors = ['blue','red','purple','green']
-ax.hist(features,bins=10,alpha=0.5,color=colors,label=feature)
+ax.hist(features,bins=25,alpha=0.5,color=colors,label=feature)
 ax.set(xlabel='Size in cm ',ylabel='Frequency',title='Data Features Histogram')
 ax.legend()
 histogram='all_features.png'
@@ -105,3 +104,12 @@ if os.path.exists(histogram_destination):
     print(f'Histogram already exists at {histogram_destination}')
 else:
     plt.savefig(histogram_destination)
+sns.set_context('notebook')
+ax = data_set.plot.hist(bins=25,alpha=0.5)
+ax.set_label('Size (cm)')
+seaborn_plot="overlaid_hist.png"
+seaborn_path = os.path.join(plots_directory,seaborn_plot)
+if os.path.exists(seaborn_path):
+    print(f'plot already exists at path {seaborn_path}')
+else:
+    plt.savefig(seaborn_path)
