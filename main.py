@@ -67,4 +67,15 @@ pprint(agg_dict)
 print(data_set.groupby('species').agg(agg_dict))
 # The .agg method in pandas is designed to recognize certain strings as reference to common aggregation functions.
 import matplotlib.pyplot as plt
-
+ax = plt.axes()
+# Creates a new set of axes which is a plotting area.
+# ax is now an axes object , you can plot data in an axes object 
+ax.scatter(data_set.sepal_length,data_set.sepal_width)
+ax.set(xlabel='Sepal length (cm)',ylabel='Sepal width (cm)',title='Sepal length vs Sepal Width')
+plots_directory='png_files'
+os.makedirs(plots_directory,exist_ok=True)
+sepal_length_vs_width_plot = os.path.join(plots_directory,'sepal_length_vs_width.png')
+if os.path.exists(sepal_length_vs_width_plot):
+    print(f'Plot already exists at {sepal_length_vs_width_plot}')
+else:
+    plt.savefig(os.path.join(plots_directory,'sepal_length_vs_width.png'))
