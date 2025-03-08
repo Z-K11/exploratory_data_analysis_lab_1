@@ -79,3 +79,13 @@ if os.path.exists(sepal_length_vs_width_plot):
     print(f'Plot already exists at {sepal_length_vs_width_plot}')
 else:
     plt.savefig(os.path.join(plots_directory,'sepal_length_vs_width.png'))
+plt.figure()
+ax = plt.axes()
+ax.hist(data_set.sepal_length,bins=25)
+ax.set(xlabel='Sepal length',ylabel='Frequency',title='Distribution of Sepal Lengths')
+histogram = 'sepal_length_histogram.png'
+histogram_destination = os.path.join(plots_directory,histogram)
+if os.path.exists(histogram_destination):
+    print(f'Histogram exists at {histogram_destination}')
+else: 
+    plt.savefig(histogram_destination)
