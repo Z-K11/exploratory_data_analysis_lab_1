@@ -55,3 +55,16 @@ print(f'Printing the mean exclusively \n {data_set.groupby('species').mean()}')
 # grouping the data set by species and printing their mean 
 print(f'printing the median exclusively \n {data_set.groupby('species').median()}')
 print(f'Printing both the mean and median at the same time \n {data_set.groupby('species').agg(['mean','median'])}')
+# Using the aggregate method you can call mutliple functions at the group same time 
+print('Printing both the mean and median by explicityly calling functions ')
+print(data_set.groupby('species').agg([np.mean,np.median]))
+from pprint import pprint 
+# importing pretty print library
+agg_dict = {field: ['mean','median'] for field in data_set.columns if field != 'species'}
+# using list comprehension to filter the list and itterate over all the elements in the column except 'species'
+agg_dict['petal_length']='max'
+pprint(agg_dict)
+print(data_set.groupby('species').agg(agg_dict))
+# The .agg method in pandas is designed to recognize certain strings as reference to common aggregation functions.
+import matplotlib.pyplot as plt
+
