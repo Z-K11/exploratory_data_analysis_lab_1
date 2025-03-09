@@ -113,3 +113,24 @@ if os.path.exists(seaborn_path):
     print(f'plot already exists at path {seaborn_path}')
 else:
     plt.savefig(seaborn_path)
+fig, axes = plt.subplots(2,2,figsize=(10,10))
+x=0
+for i in range (2):
+    for j in range(2):
+        axes[i,j].hist(data_set[feature[x]],bins=25,color=colors[x],alpha=0.5)
+        axes[i,j].set(xlabel='Size (cm)',ylabel='Frequency',title=feature[x])
+        x+=1
+four_plots = os.path.join(plots_directory,'tight_layout.png')
+if os.path.exists(four_plots):
+    print(f'Plot already exists at path {four_plots}')
+else:
+    plt.tight_layout()
+    plt.savefig(four_plots)
+data_set.boxplot(by='species')
+plt.savefig(os.path.join(plots_directory,'boxplot.png'))
+plot_data = (data_set
+.set_index('species')
+.stack().to_frame()
+.reset_index()
+.rename(columns={0:'Size','level_1':'Measurement'}))
+print(plot_data.head())
